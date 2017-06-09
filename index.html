@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link href="main.css" rel="stylesheet" type="text/css" />
+<script src='jquery-1.7.2.min.js'></script>
+<script src='jquery.selectTreeview.js'></script>
+<script>
+$(document).ready(function () {
+	$('#simple').selectTreeview({ 
+		type: 1,
+		url: 'record.json',
+		afterFun: function(){
+			console.log('我执行完了');
+		}
+	});
+	$('#multiple').selectTreeview({ 
+		data: [
+		{"id":"1","parent_id":"0","name":"item 1"},
+		{"id":"2","parent_id":"0","name":"item 2"},
+		{"id":"3","parent_id":"0","name":"item 3"},
+		{"id":"4","parent_id":"1","name":"item 4"},
+		{"id":"5","parent_id":"2","name":"item 5"},
+		{"id":"6","parent_id":"3","name":"item 6"},
+		{"id":"7","parent_id":"4","name":"item 7"}
+		],
+		selectIds: '1,2'
+	});
+	$('#third').selectTreeview();
+	$('#fourth').selectTreeview({ 
+		data: [
+		{"id":"1","parent_id":"0","name":"item 1"},
+		{"id":"2","parent_id":"0","name":"item 2"},
+		{"id":"3","parent_id":"0","name":"item 3"},
+		{"id":"4","parent_id":"1","name":"item 4"},
+		{"id":"5","parent_id":"2","name":"item 5"},
+		{"id":"6","parent_id":"3","name":"item 6"},
+		{"id":"7","parent_id":"4","name":"item 7"}
+		],
+		collapse: true
+	});
+});
+</script>
+</head>
+<body>
+	<div style="padding:20px;">
+		<select name="simple" id="simple"></select>
+		<span class="select">分组</span><select name="multiple" id="multiple"></select>
+		<select name="third" id="third">
+			<option value="1" data-parent_id="0">item 1</option>
+			<option value="2" data-parent_id="0">item 2</option>
+			<option value="3" data-parent_id="0">item 3</option>
+			<option value="4" data-parent_id="1">item 4</option>
+			<option value="5" data-parent_id="2">item 5</option>
+			<option value="6" data-parent_id="3">item 6</option>
+			<option value="7" data-parent_id="4" selected="selected">item 7</option>
+		</select>
+		<select name="fourth" id="fourth"></select>
+	</div>
+</body>
+</html>
